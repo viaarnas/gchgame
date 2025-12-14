@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rekomendasi Game Gacor</title>
+	</head>
+	
+	<body>
+		<h1>Rekomendasi Slot Akurat WASIAT4D</h1>
+
+		<label>Masukkan Username / User-ID : </label>
+		<input type="text" id="userId" placeholder="Username">
+		<button onclick="tampilkanRekomendasi()">Cek Game</button>
+		
+		<div id="waktu" style="font-style: italic"></div>
+		<div id="username"></div>
+		<div id="prag"></div>
+		<div id="pege"></div>
+		<button id="refresh" onclick="refreshForm()" style="display: none;">Refresh</button>
+
+		<script>
+			const gamePragmatic = ["Gates of Olympus 1000", "Gates of Olympus Super Scatter", "Mahjong Wins 3 - Black Scatter", "Gates of Olympus", "Starlight Princess 1000", "Sweet Bonanza 1000", "Mahjong Wins 2", "Starlight Princess", "Gates of Gatot Kaca 1000", "Sweet Bonanza", "Sugar Rush 1000", "Wisdom of Athena 1000", "Pyramid Bonanza", "Sweet Bonanza Xmas", "Mahjong Wins - Gong Xi Fa Cai", "Gates of Olympus Xmas 1000", "Aztec Gems", "Mahjong Wins Bonus", "Gates of Olympus 1000 Dice", "Bonanza Gold"];
+			const gamePgSoft = ["Mahjong Ways", "Mahjong Ways 2", "Wild Bounty Showdown", "Wild Bandito", "Lucky Neko", "Treasures of Aztec", "Ways of the Qilin", "Gemstones Gold", "Wild Ape #3258", "Cocktail Nights", "Mafia Mayhem", "Jurassic Kingdom", "Pinata Wins", "Anubis Wrath", "Queen of Bounty", "Geisha's Revenge", "Cai Shen Wins", "The Great Icescape", "Dragon Hatch 2", "Speed Winner"]; 
+
+			function tampilkanRekomendasi()
+			{
+				const id = document.getElementById("userId").value;
+				const userDiv = document.getElementById("username");
+				const pragDiv = document.getElementById("prag");
+				const pegeDiv = document.getElementById("pege");
+				
+				if (id === "")
+				{
+					userDiv.textContent = "Masukkan Username Terlebih Dahulu!";
+					userDiv.style.color = "red";
+					document.getElementById("refresh").style.display = "inline-block";
+					return;
+				}
+				
+				if (id.includes(" "))
+				{
+					userDiv.textContent = "Username Tidak Boleh Mengandung Spasi!";
+					userDiv.style.color = "red";
+					document.getElementById("refresh").style.display = "inline-block";
+					return;
+				}
+
+				if (id.length < 6 || id.length > 16)
+				{
+					userDiv.textContent = "Username Hanya 6-16 Karakter!";
+					userDiv.style.color = "red";
+					document.getElementById("refresh").style.display = "inline-block";
+					return;
+				}
+
+				const pragmatic = Math.floor(Math.random() * gamePragmatic.length);
+				const pgs = Math.floor(Math.random() * gamePgSoft.length);
+				const rekomendasiPragmatic = gamePragmatic[pragmatic];
+				const rekomendasiPgSoft = gamePgSoft[pgs];
+
+				timeUpdate();
+				userDiv.textContent = `Username : ${id}`;
+				pragDiv.textContent = `Rekomendasi Game Pragmatic : ${rekomendasiPragmatic}`;
+				pegeDiv.textContent = `Rekomendasi Game PG Soft : ${rekomendasiPgSoft}`;
+				document.getElementById("refresh").style.display = "inline-block";
+			}
+
+			function timeUpdate()
+			{
+				const waktuDiv = document.getElementById("waktu");
+				const sekarang = new Date();
+				const namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+				const hari = namaHari[sekarang.getDay()];
+				const tgl = sekarang.getDate().toString().padStart(2, '0');
+				const bln = (sekarang.getMonth() + 1).toString().padStart(2, '0');
+				const thn = sekarang.getFullYear();
+				const jam = sekarang.getHours().toString().padStart(2, '0');
+				const menit = sekarang.getMinutes().toString().padStart(2, '0');
+
+				waktuDiv.textContent = `${hari}, ${tgl}-${bln}-${thn}. Pukul ${jam}:${menit}`;
+				waktuDiv.style.color = "blue";
+			}
+			
+			function refreshForm()
+			{
+				document.getElementById("userId").value = "";
+				document.getElementById("waktu").textContent = "";
+				document.getElementById("username").textContent = "";
+				document.getElementById("prag").textContent = "";
+				document.getElementById("pege").textContent = "";
+				document.getElementById("refresh").style.display = "none";
+			}
+
+			document.getElementById("userId").addEventListener("keypress", function(event)
+							{
+								if (event.key === "Enter")
+								{
+									tampilkanRekomendasi();
+								}
+							});
+		</script>
+	</body>
+</html>
